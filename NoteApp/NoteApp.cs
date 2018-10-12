@@ -9,4 +9,5 @@ namespace NoteApp
     public class NoteApp
     {
     }
+
 }
