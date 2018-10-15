@@ -11,10 +11,16 @@ using NoteApp;
 
 namespace NoteAppUI
 {
+   /// <summary>
+   /// Класс тестовой формы
+   /// </summary>
     public partial class TestForm : Form
     {
         private Project _project;
 
+        /// <summary>
+        /// Форма с перечислением типов заметки
+        /// </summary>
         public TestForm()
         {
             InitializeComponent();
@@ -28,7 +34,11 @@ namespace NoteAppUI
         {
             
         }
-
+        /// <summary>
+        /// Событие клика на кнопку
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewNote_Click(object sender, EventArgs e)
         {
             Note note;
@@ -50,6 +60,11 @@ namespace NoteAppUI
                 NoteName.Text = string.Empty;
             }
         }
+        /// <summary>
+        /// Сохранение состояния
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void SaveNotesButton_Click(object sender, EventArgs e)
         {
@@ -57,12 +72,27 @@ namespace NoteAppUI
             MessageBox.Show("Saved Succesfully");
         }
 
+        /// <summary>
+        /// Загрузка состояния
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoadNotesButton_Click(object sender, EventArgs e)
         {
             _project = ProjectManager.Load();
 
             NoteListView.DataSource = null;
             NoteListView.DataSource = _project.ListNote.GetRange(0, _project.ListNote.Count);
+        }
+        /// <summary>
+        /// Блок отображения записей
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void NoteListView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

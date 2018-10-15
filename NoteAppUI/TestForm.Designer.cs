@@ -49,6 +49,7 @@
             this.NoteListView.Name = "NoteListView";
             this.NoteListView.Size = new System.Drawing.Size(560, 284);
             this.NoteListView.TabIndex = 1;
+            this.NoteListView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NoteListView_CellContentClick);
             // 
             // Category
             // 
