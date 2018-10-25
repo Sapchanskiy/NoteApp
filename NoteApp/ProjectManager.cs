@@ -23,13 +23,17 @@ namespace NoteApp
         /// <param name="project">Список заметок</param>
         public static void Save(Project project)
         {
+            if (!project.ListNote.Any())
+            {
+                throw new ArgumentException("Список заметок пуст");
+            }
             JsonSerializer serializer = new JsonSerializer();  //Открытие потока
           
             using (StreamWriter sw = new StreamWriter(_notesName))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 
-                serializer.Serialize(writer, project);//Вызываем сериализацию и передаём объек для сериализации
+                serializer.Serialize(writer, project);//Вызываем сериализацию и передаём объект для сериализации
             }
         }
         /// <summary>

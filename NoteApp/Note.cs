@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace NoteApp
 {
@@ -14,22 +15,13 @@ namespace NoteApp
     /// </summary>
     public class Note: ICloneable
     {
+
         #region Private Fields
 
         /// <summary>
-        /// Дата создания
-        /// </summary>
-        private readonly DateTime _creationDate;
-
-        /// <summary>
-        /// дата Изменения
+        /// Дата Изменения
         /// </summary>
         private DateTime _changeDate;
-
-        /// <summary>
-        /// Поле категорий заметки
-        /// </summary>
-        private NoteCategory _noteCategory;
 
         /// <summary>
         /// Текст заметки
@@ -41,21 +33,25 @@ namespace NoteApp
         /// </summary>
         private string _noteName;
 
+        private NoteCategory _noteCategory;
+
         #endregion
 
         #region Public Members
+
         /// <summary>
         /// Категория заметок
         /// </summary>
         public NoteCategory NoteCategory
         {
-            get
+            get => _noteCategory;
+            set
             {
-                return _noteCategory;
+                _noteCategory = value;
+                ChangeDate = DateTime.Now;
             }
-            set { _noteCategory = value; }
-
         }
+
         /// <summary>
         /// Имя заметки
         /// </summary>
@@ -75,7 +71,7 @@ namespace NoteApp
                 {
                     throw new ArgumentException("Введено слишком много символов");
                 }
-                _changeDate = DateTime.Now;
+                ChangeDate = DateTime.Now;
             }
         }
         /// <summary>
@@ -88,15 +84,25 @@ namespace NoteApp
             set
             {
                 _noteText = value;
-                _changeDate = DateTime.Now;
+                ChangeDate = DateTime.Now;
             }
         }
+
+        /// <summary>
+        /// Дата создания
+        /// </summary>
+        public DateTime CreationDate { get; }
+
+        /// <summary>
+        /// Дата изменения
+        /// </summary>
+        public DateTime ChangeDate { get => _changeDate; private set => _changeDate = value; }
 
 
         #endregion
 
         #region Private Members
-        
+
 
         /// <summary>
         /// реализация интерфейса iCloneable
@@ -117,12 +123,9 @@ namespace NoteApp
         /// </summary>
         public Note()
         {
-            _creationDate = DateTime.Now;
-            _changeDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ChangeDate = DateTime.Now;
             NoteName = "Без Названия";
-    
-            
-
         }
 
 
