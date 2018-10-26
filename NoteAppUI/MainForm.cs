@@ -186,16 +186,18 @@ namespace NoteAppUI
             {
                 var selectedNoteIndex = NotesListBox.SelectedIndex;
                 AddOrEditNoteForm addForm = new AddOrEditNoteForm(_project.ListNote[selectedNoteIndex]);
-
+                /// <summary>
+                /// При нажатии "редактировать" вызываем форму изменения или добавления заметки. Если форма не пустая, то перезаписываем текущую заметку.
+                /// </summary>
                 addForm.ShowDialog(this);
                 if (addForm.NewNote != null)
                 {
-                    _project.ListNote.RemoveAt(selectedNoteIndex);
-                    _project.ListNote.Insert(selectedNoteIndex, addForm.NewNote);
-                    NotesListBox.Items.RemoveAt(selectedNoteIndex);
-                    NotesListBox.Items.Insert(selectedNoteIndex, addForm.NewNote.NoteName);
-                    NotesListBox.SelectedIndex = selectedNoteIndex;
-                    UpdateNote();
+                    _project.ListNote.RemoveAt(selectedNoteIndex);//удаляем из списка элемент с указанным индексом в project
+                    _project.ListNote.Insert(selectedNoteIndex, addForm.NewNote);//вставляем в список новую заметку по указанному индексу в project
+                    NotesListBox.Items.RemoveAt(selectedNoteIndex);//удаляем заметку в форме
+                    NotesListBox.Items.Insert(selectedNoteIndex, addForm.NewNote.NoteName); //вствляем обновленную заметку по указанному индексу
+                    NotesListBox.SelectedIndex = selectedNoteIndex; //выделяем обновленную заметку
+                    UpdateNote();//выполняем обновление списка
                     SaveList();
                 }
             }
