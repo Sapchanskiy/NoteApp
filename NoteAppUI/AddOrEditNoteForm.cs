@@ -105,8 +105,12 @@ namespace NoteAppUI
                 NewNote = null;
             }
         }
+
         #endregion
 
+        private void CreatedDate_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -307,5 +307,9 @@ namespace NoteAppUI
 
         #endregion
 
+        private void ShowCatLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

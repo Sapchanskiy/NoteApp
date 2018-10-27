@@ -158,7 +158,7 @@
             // DeleteNoteToolStripButton
             // 
             this.DeleteNoteToolStripButton.Name = "DeleteNoteToolStripButton";
-            this.DeleteNoteToolStripButton.Size = new System.Drawing.Size(180, 22);
+            this.DeleteNoteToolStripButton.Size = new System.Drawing.Size(136, 22);
             this.DeleteNoteToolStripButton.Text = "Delete Note";
             this.DeleteNoteToolStripButton.Click += new System.EventHandler(this.DeleteNoteToolStripButton_Click);
             // 
@@ -184,7 +184,7 @@
             // 
             this.CategoryCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CategoryCombo.FormattingEnabled = true;
-            this.CategoryCombo.Location = new System.Drawing.Point(94, 31);
+            this.CategoryCombo.Location = new System.Drawing.Point(90, 22);
             this.CategoryCombo.Name = "CategoryCombo";
             this.CategoryCombo.Size = new System.Drawing.Size(128, 21);
             this.CategoryCombo.TabIndex = 15;
@@ -192,11 +192,13 @@
             // ShowCatLabel
             // 
             this.ShowCatLabel.AutoSize = true;
-            this.ShowCatLabel.Location = new System.Drawing.Point(6, 34);
+            this.ShowCatLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ShowCatLabel.Location = new System.Drawing.Point(0, 25);
             this.ShowCatLabel.Name = "ShowCatLabel";
             this.ShowCatLabel.Size = new System.Drawing.Size(82, 13);
             this.ShowCatLabel.TabIndex = 16;
             this.ShowCatLabel.Text = "Show Category:";
+            this.ShowCatLabel.Click += new System.EventHandler(this.ShowCatLabel_Click);
             // 
             // EditNoteButton
             // 

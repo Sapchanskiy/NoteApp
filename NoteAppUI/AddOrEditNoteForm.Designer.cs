@@ -94,7 +94,8 @@
             this.CreatedDate.Name = "CreatedDate";
             this.CreatedDate.Size = new System.Drawing.Size(99, 20);
             this.CreatedDate.TabIndex = 22;
-            this.CreatedDate.Value = new System.DateTime(2018, 10, 25, 18, 5, 7, 0);
+            this.CreatedDate.Value = new System.DateTime(2018, 10, 27, 18, 5, 0, 0);
+            this.CreatedDate.ValueChanged += new System.EventHandler(this.CreatedDate_ValueChanged);
             // 
             // ModifiedDate
             // 
@@ -105,7 +106,7 @@
             this.ModifiedDate.Name = "ModifiedDate";
             this.ModifiedDate.Size = new System.Drawing.Size(99, 20);
             this.ModifiedDate.TabIndex = 23;
-            this.ModifiedDate.Value = new System.DateTime(2018, 10, 25, 18, 5, 7, 0);
+            this.ModifiedDate.Value = new System.DateTime(2018, 10, 27, 0, 0, 0, 0);
             // 
             // CategoryCombo
             // 
