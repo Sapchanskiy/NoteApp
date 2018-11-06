@@ -42,14 +42,14 @@ namespace NoteApp
         /// <returns></returns>
         public static Project Load()
         {
-            Project notes = new Project();//Создаём экземпляр сериализатора.
+            Project notes = new Project();
             
-            JsonSerializer serializer = new JsonSerializer(); //Открываем поток для чтения из файла с указанием пути.
-           
-            using (StreamReader streamread = new StreamReader(_notesName))
+            JsonSerializer serializer = new JsonSerializer(); //Создаём экземпляр сериализатора. 
+
+            using (StreamReader streamread = new StreamReader(_notesName)) //Открываем поток для чтения из файла с указанием пути.
             using (JsonReader reader = new JsonTextReader(streamread))
             {
-                var noteList = (Project)serializer.Deserialize<Project>(reader);   //Вызываем десериализацию
+                var noteList = serializer.Deserialize<Project>(reader);   //Вызываем десериализацию
                 notes = noteList;
               
             }

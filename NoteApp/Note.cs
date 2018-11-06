@@ -19,11 +19,6 @@ namespace NoteApp
         #region Private Fields
 
         /// <summary>
-        /// Дата Изменения
-        /// </summary>
-        private DateTime _changeDate;
-
-        /// <summary>
         /// Текст заметки
         /// </summary>
         private string _noteText;
@@ -48,7 +43,6 @@ namespace NoteApp
             set
             {
                 _noteCategory = value;
-                ChangeDate = DateTime.Now;
             }
         }
 
@@ -71,7 +65,7 @@ namespace NoteApp
                 {
                     throw new ArgumentException("Введено слишком много символов");
                 }
-                ChangeDate = DateTime.Now;
+                
             }
         }
         /// <summary>
@@ -84,25 +78,29 @@ namespace NoteApp
             set
             {
                 _noteText = value;
-                ChangeDate = DateTime.Now;
             }
         }
 
         /// <summary>
         /// Дата создания
         /// </summary>
-        public DateTime CreationDate { get; }
+        [JsonProperty]
+        public DateTime CreationDate { get; private set; }
 
         /// <summary>
         /// Дата изменения
         /// </summary>
-        public DateTime ChangeDate { get => _changeDate; private set => _changeDate = value; }
+        public DateTime ChangeDate { get; set; }
 
 
         #endregion
 
         #region Private Members
 
+        public Note()
+        {
+
+        }
 
         /// <summary>
         /// реализация интерфейса iCloneable
@@ -118,16 +116,17 @@ namespace NoteApp
 
 
         #region Constructor
-        /// <summary>
-        /// конструктор класса Note
+
+                /// <summary>
+        /// Конструктор класса Note при создании заметки
         /// </summary>
-        public Note()
+        /// <param name="date">Дата создания</param>
+        public Note(DateTime date)
         {
-            CreationDate = DateTime.Now;
-            ChangeDate = DateTime.Now;
+            CreationDate = date;
+            ChangeDate = date;
             NoteName = "Без Названия";
         }
-
 
         #endregion
     }

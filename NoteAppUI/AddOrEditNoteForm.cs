@@ -38,7 +38,9 @@ namespace NoteAppUI
         {
             InitializeComponent();
             CategoryCombo.DataSource = Enum.GetValues(typeof(NoteCategory));
-            NewNote = new Note();
+            NewNote = new Note(DateTime.Now);
+            CreatedDate.Value = DateTime.Now;
+            ModifiedDate.Value = DateTime.Now;
         }
 
         /// <summary>
@@ -73,6 +75,7 @@ namespace NoteAppUI
                 NewNote.NoteName = NoteNameTextBox.Text;
                 NewNote.NoteText = NoteTextTextBox.Text;
                 NewNote.NoteCategory = (NoteCategory)CategoryCombo.SelectedItem;
+                NewNote.ChangeDate = DateTime.Now;
                 _okButtonFlag = true;
                 Close();
             }
@@ -107,10 +110,5 @@ namespace NoteAppUI
         }
 
         #endregion
-
-        private void CreatedDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

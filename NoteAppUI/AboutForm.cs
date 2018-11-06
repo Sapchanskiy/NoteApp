@@ -16,5 +16,10 @@ namespace NoteAppUI
         {
             InitializeComponent();
         }
+
+        private void emailLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

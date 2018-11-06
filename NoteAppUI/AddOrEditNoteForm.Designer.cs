@@ -95,7 +95,6 @@
             this.CreatedDate.Size = new System.Drawing.Size(99, 20);
             this.CreatedDate.TabIndex = 22;
             this.CreatedDate.Value = new System.DateTime(2018, 10, 27, 18, 5, 0, 0);
-            this.CreatedDate.ValueChanged += new System.EventHandler(this.CreatedDate_ValueChanged);
             // 
             // ModifiedDate
             // 
@@ -161,25 +160,25 @@
             // 
             this.ButtonsTableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonsTableLayout.ColumnCount = 2;
-            this.ButtonsTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.50262F));
-            this.ButtonsTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.49738F));
-            this.ButtonsTableLayout.Controls.Add(this.ButtonCancel, 0, 0);
+            this.ButtonsTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ButtonsTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.ButtonsTableLayout.Controls.Add(this.ButtonOK, 1, 0);
-            this.ButtonsTableLayout.Location = new System.Drawing.Point(117, 178);
+            this.ButtonsTableLayout.Controls.Add(this.ButtonCancel, 0, 0);
+            this.ButtonsTableLayout.Location = new System.Drawing.Point(136, 178);
             this.ButtonsTableLayout.Name = "ButtonsTableLayout";
             this.ButtonsTableLayout.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ButtonsTableLayout.RowCount = 1;
             this.ButtonsTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.ButtonsTableLayout.Size = new System.Drawing.Size(191, 27);
+            this.ButtonsTableLayout.Size = new System.Drawing.Size(172, 27);
             this.ButtonsTableLayout.TabIndex = 27;
             // 
             // ButtonCancel
             // 
             this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCancel.Location = new System.Drawing.Point(109, 3);
+            this.ButtonCancel.Location = new System.Drawing.Point(89, 3);
             this.ButtonCancel.MinimumSize = new System.Drawing.Size(75, 23);
             this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
+            this.ButtonCancel.Size = new System.Drawing.Size(80, 23);
             this.ButtonCancel.TabIndex = 1;
             this.ButtonCancel.Text = "Cancel";
             this.ButtonCancel.UseVisualStyleBackColor = true;

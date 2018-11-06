@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using NoteApp;
 
@@ -26,11 +27,22 @@ namespace NoteAppUI
             InitializeComponent();
             CategoryCombo.DataSource = Enum.GetValues(typeof(NoteCategory));
             InitializeNoteView();
-            _project = ProjectManager.Load();
-            foreach (var note in _project.ListNote)
+            try
             {
-                NotesListBox.Items.Add(note.NoteName);
+                _project = ProjectManager.Load();
+                foreach (var note in _project.ListNote)
+                {
+                    NotesListBox.Items.Add(note.NoteName);
+                }
             }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show(".notes file was deleted or moved.", "File not found", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                _project = new Project();
+            }
+          
         }
 
         #endregion
@@ -306,10 +318,5 @@ namespace NoteAppUI
         }
 
         #endregion
-
-        private void ShowCatLabel_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

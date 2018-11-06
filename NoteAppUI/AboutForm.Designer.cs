@@ -69,18 +69,19 @@
             this.emailLabel.AutoSize = true;
             this.emailLabel.Location = new System.Drawing.Point(12, 113);
             this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(40, 13);
+            this.emailLabel.Size = new System.Drawing.Size(152, 13);
             this.emailLabel.TabIndex = 3;
-            this.emailLabel.Text = "e-mail: ";
+            this.emailLabel.Text = "e-mail: saprunov.so@micran.ru";
+            this.emailLabel.Click += new System.EventHandler(this.emailLabel_Click);
             // 
             // WebsiteLabel
             // 
             this.WebsiteLabel.AutoSize = true;
             this.WebsiteLabel.Location = new System.Drawing.Point(12, 135);
             this.WebsiteLabel.Name = "WebsiteLabel";
-            this.WebsiteLabel.Size = new System.Drawing.Size(44, 13);
+            this.WebsiteLabel.Size = new System.Drawing.Size(152, 13);
             this.WebsiteLabel.TabIndex = 4;
-            this.WebsiteLabel.Text = "Github: ";
+            this.WebsiteLabel.Text = "Github: Sapchanskiy/NoteApp";
             // 
             // FooterSignatureLabel
             // 
