@@ -13,16 +13,6 @@ namespace NoteAppUI
 {
     public partial class AddOrEditNoteForm : Form
     {
-        #region Private Fields
-
-        /// <summary>
-        /// Флаг закрытия через кнопку OK
-        /// </summary>
-        private bool _okButtonFlag = false;
-
-        #endregion
-
-
         #region Public Properties
 
         public Note NewNote { get; private set; }
@@ -44,12 +34,11 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Конструктор при редактировании заметки
+        /// Метод для установки заметки при редактировании
         /// </summary>
         /// <param name="note">Редактируемая заметка</param>
-        public AddOrEditNoteForm(Note note)
+        public void  SetNote(Note note)
         {
-            InitializeComponent();
             CategoryCombo.DataSource = Enum.GetValues(typeof(NoteCategory));
             NewNote = note;
             NoteNameTextBox.Text = NewNote.NoteName;
@@ -76,7 +65,7 @@ namespace NoteAppUI
                 NewNote.NoteText = NoteTextTextBox.Text;
                 NewNote.NoteCategory = (NoteCategory)CategoryCombo.SelectedItem;
                 NewNote.ChangeDate = DateTime.Now;
-                _okButtonFlag = true;
+                DialogResult = DialogResult.OK;
                 Close();
             }
             catch (ArgumentException)
@@ -93,20 +82,8 @@ namespace NoteAppUI
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             NewNote = null;
+            DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        /// <summary>
-        /// Закрытие через красный крестик
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddOrEditNoteForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!_okButtonFlag)
-            {
-                NewNote = null;
-            }
         }
 
         #endregion

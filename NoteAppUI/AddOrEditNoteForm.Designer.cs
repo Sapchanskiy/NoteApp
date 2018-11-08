@@ -39,8 +39,8 @@
             this.NoteTextTextBox = new System.Windows.Forms.RichTextBox();
             this.GeneralTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonsTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonCancel = new System.Windows.Forms.Button();
             this.ButtonOK = new System.Windows.Forms.Button();
+            this.ButtonCancel = new System.Windows.Forms.Button();
             this.GeneralTableLayout.SuspendLayout();
             this.ButtonsTableLayout.SuspendLayout();
             this.SuspendLayout();
@@ -172,18 +172,6 @@
             this.ButtonsTableLayout.Size = new System.Drawing.Size(172, 27);
             this.ButtonsTableLayout.TabIndex = 27;
             // 
-            // ButtonCancel
-            // 
-            this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCancel.Location = new System.Drawing.Point(89, 3);
-            this.ButtonCancel.MinimumSize = new System.Drawing.Size(75, 23);
-            this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(80, 23);
-            this.ButtonCancel.TabIndex = 1;
-            this.ButtonCancel.Text = "Cancel";
-            this.ButtonCancel.UseVisualStyleBackColor = true;
-            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
-            // 
             // ButtonOK
             // 
             this.ButtonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -196,6 +184,18 @@
             this.ButtonOK.Text = "OK";
             this.ButtonOK.UseVisualStyleBackColor = true;
             this.ButtonOK.Click += new System.EventHandler(this.ButtonOK_Click);
+            // 
+            // ButtonCancel
+            // 
+            this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCancel.Location = new System.Drawing.Point(89, 3);
+            this.ButtonCancel.MinimumSize = new System.Drawing.Size(75, 23);
+            this.ButtonCancel.Name = "ButtonCancel";
+            this.ButtonCancel.Size = new System.Drawing.Size(80, 23);
+            this.ButtonCancel.TabIndex = 1;
+            this.ButtonCancel.Text = "Cancel";
+            this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // AddOrEditNoteForm
             // 
@@ -215,7 +215,6 @@
             this.MinimumSize = new System.Drawing.Size(354, 351);
             this.Name = "AddOrEditNoteForm";
             this.Text = "AddOrEditNoteForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddOrEditNoteForm_FormClosing);
             this.GeneralTableLayout.ResumeLayout(false);
             this.ButtonsTableLayout.ResumeLayout(false);
             this.ResumeLayout(false);

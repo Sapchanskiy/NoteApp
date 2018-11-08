@@ -13,47 +13,56 @@ namespace NoteApp
     /// </summary>
     public static class ProjectManager
     {
+        #region Private Fields
+
+        #endregion
+
+        #region Public Methods
+
         /// <summary>
-        /// Путь к файлу с данными
+        /// Загрузка файла
         /// </summary>
-        private const string _notesName = "C:\\Users\\User\\Documents\\Notes.notes";
+        /// <param name="filepath">Путь к файлу</param>
+        /// <returns></returns>
+        public static Project Load(string filePath)
+        {
+            Project notes = new Project();
+
+            JsonSerializer serializer = new JsonSerializer(); //Создаём экземпляр сериализатора. 
+
+            using (StreamReader streamread = new StreamReader(filePath)
+            ) //Открываем поток для чтения из файла с указанием пути.
+            using (JsonReader reader = new JsonTextReader(streamread))
+            {
+                var noteList = serializer.Deserialize<Project>(reader); //Вызываем десериализацию
+                notes = noteList;
+            }
+
+            return notes;
+        }
+
         /// <summary>
         /// Сохранение файла
         /// </summary>
-        /// <param name="project">Список заметок</param>
-        public static void Save(Project project)
+        /// <param name="project">Сохраняемый проект</param>
+        /// <param name="filepath">Путь к файлу</param>
+        public static void Save(Project project, string filepath)
         {
             if (!project.ListNote.Any())
             {
                 throw new ArgumentException("Список заметок пуст");
             }
-            JsonSerializer serializer = new JsonSerializer();  //Открытие потока
-          
-            using (StreamWriter sw = new StreamWriter(_notesName))
+
+            JsonSerializer serializer = new JsonSerializer(); //Открытие потока
+
+            using (StreamWriter sw = new StreamWriter(filepath))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                
-                serializer.Serialize(writer, project);//Вызываем сериализацию и передаём объект для сериализации
+                serializer.Serialize(writer, project); //Вызываем сериализацию и передаём объект для сериализации
             }
         }
-        /// <summary>
-        /// Загрузка файла
-        /// </summary>
-        /// <returns></returns>
-        public static Project Load()
-        {
-            Project notes = new Project();
-            
-            JsonSerializer serializer = new JsonSerializer(); //Создаём экземпляр сериализатора. 
 
-            using (StreamReader streamread = new StreamReader(_notesName)) //Открываем поток для чтения из файла с указанием пути.
-            using (JsonReader reader = new JsonTextReader(streamread))
-            {
-                var noteList = serializer.Deserialize<Project>(reader);   //Вызываем десериализацию
-                notes = noteList;
-              
-            }
-            return notes;
-        }
+        #endregion
+
     }
-    }
+}

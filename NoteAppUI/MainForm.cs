@@ -15,6 +15,11 @@ namespace NoteAppUI
 
         private Project _project;
 
+        /// <summary>
+        /// Путь к файлу с данными
+        /// </summary>
+        private readonly string _notesName = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Notes.notes");
+
         #endregion
 
         #region Constructors
@@ -29,7 +34,7 @@ namespace NoteAppUI
             InitializeNoteView();
             try
             {
-                _project = ProjectManager.Load();
+                _project = ProjectManager.Load(_notesName);
                 foreach (var note in _project.ListNote)
                 {
                     NotesListBox.Items.Add(note.NoteName);
@@ -197,11 +202,14 @@ namespace NoteAppUI
             try
             {
                 var selectedNoteIndex = NotesListBox.SelectedIndex;
-                AddOrEditNoteForm addForm = new AddOrEditNoteForm(_project.ListNote[selectedNoteIndex]);
-                /// <summary>
-                /// При нажатии "редактировать" вызываем форму изменения или добавления заметки. Если форма не пустая, то перезаписываем текущую заметку.
-                /// </summary>
+                AddOrEditNoteForm addForm = new AddOrEditNoteForm();
+                addForm.SetNote(_project.ListNote[selectedNoteIndex]);
+                // При нажатии "редактировать" вызываем форму изменения или добавления заметки. Если форма не пустая, то перезаписываем текущую заметку.
                 addForm.ShowDialog(this);
+                if (addForm.DialogResult != DialogResult.OK)
+                {
+                    return;
+                }
                 if (addForm.NewNote != null)
                 {
                     _project.ListNote.RemoveAt(selectedNoteIndex);//удаляем из списка элемент с указанным индексом в project
@@ -266,6 +274,10 @@ namespace NoteAppUI
         {
             AddOrEditNoteForm addForm = new AddOrEditNoteForm();
             addForm.ShowDialog(this);
+            if (addForm.DialogResult != DialogResult.OK)
+            {
+                return;
+            }
             if (addForm.NewNote != null)
             {
                 _project.ListNote.Add(addForm.NewNote);
@@ -296,8 +308,7 @@ namespace NoteAppUI
         {
             try
             {
-                ProjectManager.Save(_project);
-                MessageBox.Show("Saved Correctly", "Success", MessageBoxButtons.OK);
+                ProjectManager.Save(_project, _notesName);
             }
             catch (ArgumentException)
             {

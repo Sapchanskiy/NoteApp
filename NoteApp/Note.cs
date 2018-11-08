@@ -55,23 +55,24 @@ namespace NoteApp
             get => _noteName;
             set
             {
-                _noteName = value;
+                
                 if (value.Length < 1)
                 {
-                    _noteName = "Без названия";
+                    _noteName = "Not Named";
+                    return;
                 }
 
                 if (value.Length >= 50)
                 {
                     throw new ArgumentException("Введено слишком много символов");
                 }
-                
+                _noteName = value;
+
             }
         }
         /// <summary>
         /// Текст заметки
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">Когда количество букв в тексте менее 1.</exception>
         public string NoteText
         {
             get => _noteText;
@@ -97,9 +98,16 @@ namespace NoteApp
 
         #region Private Members
 
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public Note()
         {
-
+            CreationDate = DateTime.Now;
+            ChangeDate = DateTime.Now;
+            NoteName = "Not Named";
+            NoteCategory = NoteCategory.Work;
+            NoteText = string.Empty;
         }
 
         /// <summary>
@@ -117,7 +125,7 @@ namespace NoteApp
 
         #region Constructor
 
-                /// <summary>
+        /// <summary>
         /// Конструктор класса Note при создании заметки
         /// </summary>
         /// <param name="date">Дата создания</param>
@@ -125,8 +133,12 @@ namespace NoteApp
         {
             CreationDate = date;
             ChangeDate = date;
-            NoteName = "Без Названия";
+            NoteName = "Not Named";
+            NoteCategory = NoteCategory.Work;
+            NoteText = string.Empty;
         }
+
+
 
         #endregion
     }
