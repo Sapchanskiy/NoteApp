@@ -33,6 +33,14 @@
             this.DeleteNoteButton = new System.Windows.Forms.Button();
             this.NotesListBox = new System.Windows.Forms.ListBox();
             this.UserBar = new System.Windows.Forms.ToolStrip();
+            this.FileToolStripDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ExitToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditToolStripDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.AddNoteToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditNoteToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteNoteToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.AboutToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.CategoryCombo = new System.Windows.Forms.ComboBox();
             this.ShowCatLabel = new System.Windows.Forms.Label();
             this.NoteNameLabel = new System.Windows.Forms.Label();
@@ -43,14 +51,6 @@
             this.ModifiedDate = new System.Windows.Forms.DateTimePicker();
             this.NoteTextTextBox = new System.Windows.Forms.RichTextBox();
             this.EditNoteButton = new System.Windows.Forms.Button();
-            this.FileToolStripDropDown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ExitToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditToolStripDropDown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.AddNoteToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditNoteToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteNoteToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.HelpToolStripDropDown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.AboutToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.NewNoteButton = new System.Windows.Forms.Button();
             this.UserBar.SuspendLayout();
             this.SuspendLayout();
@@ -99,14 +99,95 @@
             this.UserBar.TabIndex = 14;
             this.UserBar.Text = "UserBar";
             // 
+            // FileToolStripDropDown
+            // 
+            this.FileToolStripDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.FileToolStripDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExitToolStripButton});
+            this.FileToolStripDropDown.Image = ((System.Drawing.Image)(resources.GetObject("FileToolStripDropDown.Image")));
+            this.FileToolStripDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FileToolStripDropDown.Name = "FileToolStripDropDown";
+            this.FileToolStripDropDown.Size = new System.Drawing.Size(38, 22);
+            this.FileToolStripDropDown.Text = "File";
+            // 
+            // ExitToolStripButton
+            // 
+            this.ExitToolStripButton.Name = "ExitToolStripButton";
+            this.ExitToolStripButton.Size = new System.Drawing.Size(92, 22);
+            this.ExitToolStripButton.Text = "Exit";
+            this.ExitToolStripButton.Click += new System.EventHandler(this.ExitToolStripButton_Click);
+            // 
+            // EditToolStripDropDown
+            // 
+            this.EditToolStripDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.EditToolStripDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddNoteToolStripButton,
+            this.EditNoteToolStripButton,
+            this.DeleteNoteToolStripButton});
+            this.EditToolStripDropDown.Image = ((System.Drawing.Image)(resources.GetObject("EditToolStripDropDown.Image")));
+            this.EditToolStripDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditToolStripDropDown.Name = "EditToolStripDropDown";
+            this.EditToolStripDropDown.Size = new System.Drawing.Size(40, 22);
+            this.EditToolStripDropDown.Text = "Edit";
+            // 
+            // AddNoteToolStripButton
+            // 
+            this.AddNoteToolStripButton.Name = "AddNoteToolStripButton";
+            this.AddNoteToolStripButton.Size = new System.Drawing.Size(136, 22);
+            this.AddNoteToolStripButton.Text = "Add Note";
+            this.AddNoteToolStripButton.Click += new System.EventHandler(this.AddNoteToolStripButton_Click);
+            // 
+            // EditNoteToolStripButton
+            // 
+            this.EditNoteToolStripButton.Name = "EditNoteToolStripButton";
+            this.EditNoteToolStripButton.Size = new System.Drawing.Size(136, 22);
+            this.EditNoteToolStripButton.Text = "Edit Note";
+            this.EditNoteToolStripButton.Click += new System.EventHandler(this.EditNoteToolStripButton_Click);
+            // 
+            // DeleteNoteToolStripButton
+            // 
+            this.DeleteNoteToolStripButton.Name = "DeleteNoteToolStripButton";
+            this.DeleteNoteToolStripButton.Size = new System.Drawing.Size(136, 22);
+            this.DeleteNoteToolStripButton.Text = "Delete Note";
+            this.DeleteNoteToolStripButton.Click += new System.EventHandler(this.DeleteNoteToolStripButton_Click);
+            // 
+            // HelpToolStripDropDown
+            // 
+            this.HelpToolStripDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.HelpToolStripDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutToolStripButton});
+            this.HelpToolStripDropDown.Image = ((System.Drawing.Image)(resources.GetObject("HelpToolStripDropDown.Image")));
+            this.HelpToolStripDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HelpToolStripDropDown.Name = "HelpToolStripDropDown";
+            this.HelpToolStripDropDown.Size = new System.Drawing.Size(45, 22);
+            this.HelpToolStripDropDown.Text = "Help";
+            // 
+            // AboutToolStripButton
+            // 
+            this.AboutToolStripButton.Name = "AboutToolStripButton";
+            this.AboutToolStripButton.Size = new System.Drawing.Size(107, 22);
+            this.AboutToolStripButton.Text = "About";
+            this.AboutToolStripButton.Click += new System.EventHandler(this.AboutToolStripButton_Click);
+            // 
             // CategoryCombo
             // 
             this.CategoryCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CategoryCombo.FormattingEnabled = true;
+            this.CategoryCombo.Items.AddRange(new object[] {
+            "All",
+            "Work",
+            "Home",
+            "Health",
+            "Sport",
+            "People",
+            "Documents",
+            "Finance",
+            "Other"});
             this.CategoryCombo.Location = new System.Drawing.Point(96, 28);
             this.CategoryCombo.Name = "CategoryCombo";
             this.CategoryCombo.Size = new System.Drawing.Size(128, 21);
             this.CategoryCombo.TabIndex = 15;
+            this.CategoryCombo.SelectedIndexChanged += new System.EventHandler(this.CategoryCombo_SelectedIndexChanged);
             // 
             // ShowCatLabel
             // 
@@ -192,82 +273,12 @@
             // 
             this.EditNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditNoteButton.Image = global::NoteAppUI.Properties.Resources.edit;
-            this.EditNoteButton.Location = new System.Drawing.Point(55, 407);
+            this.EditNoteButton.Location = new System.Drawing.Point(55, 408);
             this.EditNoteButton.Name = "EditNoteButton";
             this.EditNoteButton.Size = new System.Drawing.Size(40, 40);
             this.EditNoteButton.TabIndex = 17;
             this.EditNoteButton.UseVisualStyleBackColor = true;
             this.EditNoteButton.Click += new System.EventHandler(this.EditNoteButton_Click);
-            // 
-            // FileToolStripDropDown
-            // 
-            this.FileToolStripDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.FileToolStripDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ExitToolStripButton});
-            this.FileToolStripDropDown.Image = ((System.Drawing.Image)(resources.GetObject("FileToolStripDropDown.Image")));
-            this.FileToolStripDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FileToolStripDropDown.Name = "FileToolStripDropDown";
-            this.FileToolStripDropDown.Size = new System.Drawing.Size(38, 22);
-            this.FileToolStripDropDown.Text = "File";
-            // 
-            // ExitToolStripButton
-            // 
-            this.ExitToolStripButton.Name = "ExitToolStripButton";
-            this.ExitToolStripButton.Size = new System.Drawing.Size(92, 22);
-            this.ExitToolStripButton.Text = "Exit";
-            this.ExitToolStripButton.Click += new System.EventHandler(this.ExitToolStripButton_Click);
-            // 
-            // EditToolStripDropDown
-            // 
-            this.EditToolStripDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.EditToolStripDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddNoteToolStripButton,
-            this.EditNoteToolStripButton,
-            this.DeleteNoteToolStripButton});
-            this.EditToolStripDropDown.Image = ((System.Drawing.Image)(resources.GetObject("EditToolStripDropDown.Image")));
-            this.EditToolStripDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EditToolStripDropDown.Name = "EditToolStripDropDown";
-            this.EditToolStripDropDown.Size = new System.Drawing.Size(40, 22);
-            this.EditToolStripDropDown.Text = "Edit";
-            // 
-            // AddNoteToolStripButton
-            // 
-            this.AddNoteToolStripButton.Name = "AddNoteToolStripButton";
-            this.AddNoteToolStripButton.Size = new System.Drawing.Size(136, 22);
-            this.AddNoteToolStripButton.Text = "Add Note";
-            this.AddNoteToolStripButton.Click += new System.EventHandler(this.AddNoteToolStripButton_Click);
-            // 
-            // EditNoteToolStripButton
-            // 
-            this.EditNoteToolStripButton.Name = "EditNoteToolStripButton";
-            this.EditNoteToolStripButton.Size = new System.Drawing.Size(136, 22);
-            this.EditNoteToolStripButton.Text = "Edit Note";
-            this.EditNoteToolStripButton.Click += new System.EventHandler(this.EditNoteToolStripButton_Click);
-            // 
-            // DeleteNoteToolStripButton
-            // 
-            this.DeleteNoteToolStripButton.Name = "DeleteNoteToolStripButton";
-            this.DeleteNoteToolStripButton.Size = new System.Drawing.Size(136, 22);
-            this.DeleteNoteToolStripButton.Text = "Delete Note";
-            this.DeleteNoteToolStripButton.Click += new System.EventHandler(this.DeleteNoteToolStripButton_Click);
-            // 
-            // HelpToolStripDropDown
-            // 
-            this.HelpToolStripDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.HelpToolStripDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutToolStripButton});
-            this.HelpToolStripDropDown.Image = ((System.Drawing.Image)(resources.GetObject("HelpToolStripDropDown.Image")));
-            this.HelpToolStripDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.HelpToolStripDropDown.Name = "HelpToolStripDropDown";
-            this.HelpToolStripDropDown.Size = new System.Drawing.Size(45, 22);
-            this.HelpToolStripDropDown.Text = "Help";
-            // 
-            // AboutToolStripButton
-            // 
-            this.AboutToolStripButton.Name = "AboutToolStripButton";
-            this.AboutToolStripButton.Size = new System.Drawing.Size(107, 22);
-            this.AboutToolStripButton.Text = "About";
-            this.AboutToolStripButton.Click += new System.EventHandler(this.AboutToolStripButton_Click);
             // 
             // NewNoteButton
             // 
@@ -284,6 +295,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(694, 450);
             this.Controls.Add(this.NoteTextTextBox);
             this.Controls.Add(this.ModifiedDate);
@@ -300,11 +312,12 @@
             this.Controls.Add(this.DeleteNoteButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NewNoteButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(4096, 1716);
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text = "TestForm";
+            this.Text = "NoteApp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);

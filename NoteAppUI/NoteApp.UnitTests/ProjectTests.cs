@@ -10,7 +10,31 @@ namespace NoteApp.UnitTests
     [TestFixture]
     class ProjectTests
     {
-        Project _project = new Project();
+        private Project _project = new Project();
+        
+        private List<Note> _listExpected = new List<Note>
+        {
+            new Note(new DateTime(2058, 3, 12)),
+            new Note(new DateTime(2020, 3, 12)),
+            new Note(new DateTime(2015, 3, 15)),
+            new Note(new DateTime(2012, 3, 12)),
+            new Note(new DateTime(218, 3, 12)),
+        };
+
+        private Project _projectForOrder = new Project
+        {
+            ListNote = new List<Note>
+            {
+                new Note(new DateTime(2015, 3, 15)),
+                new Note(new DateTime(2018, 3, 12)){NoteCategory = NoteCategory.Other},
+                new Note(new DateTime(2012, 3, 12)),
+                new Note(new DateTime(2020, 3, 12)),
+                new Note(new DateTime(2058, 3, 12)),
+                new Note(new DateTime(2008, 3, 12)){NoteCategory = NoteCategory.Other},
+                new Note(new DateTime(218, 3, 12)),
+
+            }
+        };
 
         [SetUp]
         public void InitProject()
@@ -26,6 +50,7 @@ namespace NoteApp.UnitTests
                 new Note(new DateTime(2015, 3, 15)),
                 note1,
             };
+            
         }
 
         [Test]
@@ -49,6 +74,20 @@ namespace NoteApp.UnitTests
                 Assert.AreEqual(expectedCreationDates[i], _project.ListNote[i].CreationDate);
             }
         }
+
+        [Test]
+        [TestCase(TestName = "Тест метода сортировки по дате модифицирования")]
+        public void OrderByModifiedDateFilterTest()
+        {
+            var filteredList = _projectForOrder.OrderListByCreationDate(NoteCategory.Work);
+            Assert.AreEqual(_listExpected.Count, filteredList.Count);
+            for (int i = 0; i < filteredList.Count; i++)
+            {
+                Assert.AreEqual(_listExpected[i].NoteCategory, filteredList[i].NoteCategory);
+                Assert.AreEqual(_listExpected[i].ChangeDate, filteredList[i].ChangeDate);
+            }
+        }
+
 
     }
 }

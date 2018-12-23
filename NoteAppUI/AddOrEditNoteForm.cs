@@ -70,7 +70,7 @@ namespace NoteAppUI
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("Too many characters", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Too many symbols", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -87,5 +87,10 @@ namespace NoteAppUI
         }
 
         #endregion
+
+        private void NoteTextTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

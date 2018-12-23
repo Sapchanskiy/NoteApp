@@ -64,7 +64,7 @@ namespace NoteApp
 
                 if (value.Length >= 50)
                 {
-                    throw new ArgumentException("Введено слишком много символов");
+                    throw new ArgumentException("too many symbols");
                 }
                 _noteName = value;
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrEditNoteForm));
             this.TitleLabel = new System.Windows.Forms.Label();
             this.CategoryLabel = new System.Windows.Forms.Label();
             this.CreatedDateLabel = new System.Windows.Forms.Label();
@@ -137,6 +138,7 @@
             this.NoteTextTextBox.Size = new System.Drawing.Size(305, 175);
             this.NoteTextTextBox.TabIndex = 26;
             this.NoteTextTextBox.Text = "";
+            this.NoteTextTextBox.TextChanged += new System.EventHandler(this.NoteTextTextBox_TextChanged);
             // 
             // GeneralTableLayout
             // 
@@ -211,10 +213,11 @@
             this.Controls.Add(this.CreatedDateLabel);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.TitleLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(4096, 1716);
             this.MinimumSize = new System.Drawing.Size(354, 351);
             this.Name = "AddOrEditNoteForm";
-            this.Text = "AddOrEditNoteForm";
+            this.Text = "Redact Note";
             this.GeneralTableLayout.ResumeLayout(false);
             this.ButtonsTableLayout.ResumeLayout(false);
             this.ResumeLayout(false);

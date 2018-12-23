@@ -20,7 +20,7 @@ namespace NoteApp.UnitTests
             {
                 NoteCategory = categoryToSet
             };
-            Assert.True(note.NoteCategory == expectedCategory);
+            Assert.AreEqual(expectedCategory, note.NoteCategory);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace NoteApp.UnitTests
             {
                 NoteCategory = categoryToSet
             };
-            Assert.False(note.NoteCategory == expectedCategory);
+            Assert.AreNotEqual(expectedCategory, note.NoteCategory);
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace NoteApp.UnitTests
                                 "Sample Text Sample Text Sample Text Sample Text Sample" +
                                 " Text Sample Text Sample Text Sample Text Sample Text " +
                                 "Sample Text Sample Text Sample Text Sample Text Sample Text ";
-            }, "Test Error");
+            }, "Test Error=");
         }
 
         #endregion

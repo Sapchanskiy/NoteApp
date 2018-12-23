@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using NoteApp;
 
@@ -30,25 +32,38 @@ namespace NoteAppUI
         public MainForm()
         {
             InitializeComponent();
-            CategoryCombo.DataSource = Enum.GetValues(typeof(NoteCategory));
-            InitializeNoteView();
+            
             try
             {
                 _project = ProjectManager.Load(_notesName);
-                foreach (var note in _project.ListNote)
-                {
-                    NotesListBox.Items.Add(note.NoteName);
-                }
+                _project.ListNote = _project.OrderListByCreationDate();
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show(".notes file was deleted or moved.", "File not found", MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+                MessageBox.Show(".notes file was deleted or moved.", "File not found", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 _project = new Project();
             }
-          
+            CategoryCombo.SelectedIndex = 0;
+            if (_project.CurrentNote != null)
+            {
+                int index = 0;
+                for (int i = 0; i < _project.ListNote.Count; i++)
+                {
+                    if (_project.ListNote[i].NoteName == _project.CurrentNote.NoteName)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                NotesListBox.SelectedIndex = index;
+                UpdateNote();
+            }
         }
+
+        
 
         #endregion
 
@@ -153,6 +168,10 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (NotesListBox.SelectedItem != null)
+            {
+                _project.CurrentNote = (Note) NotesListBox.SelectedItem;
+            }
             SaveList();
         }
 
@@ -195,6 +214,23 @@ namespace NoteAppUI
         #region Private Methods
 
         /// <summary>
+        /// Обновление ListBox
+        /// </summary>
+        private void UpdateListBox()
+        {
+            NotesListBox.DataSource = null;
+            if (CategoryCombo.SelectedIndex <= 0)
+            {
+                NotesListBox.DataSource = _project.OrderListByCreationDate();
+            }
+            else if (CategoryCombo.SelectedIndex > 0)
+            {
+                NotesListBox.DataSource = _project.OrderListByCreationDate((NoteCategory)CategoryCombo.SelectedIndex);
+            }
+            NotesListBox.DisplayMember = "NoteName";
+        }
+
+        /// <summary>
         /// Редактировать заметку
         /// </summary>
         private void EditNote()
@@ -214,10 +250,9 @@ namespace NoteAppUI
                 {
                     _project.ListNote.RemoveAt(selectedNoteIndex);//удаляем из списка элемент с указанным индексом в project
                     _project.ListNote.Insert(selectedNoteIndex, addForm.NewNote);//вставляем в список новую заметку по указанному индексу в project
-                    NotesListBox.Items.RemoveAt(selectedNoteIndex);//удаляем заметку в форме
-                    NotesListBox.Items.Insert(selectedNoteIndex, addForm.NewNote.NoteName); //вствляем обновленную заметку по указанному индексу
-                    NotesListBox.SelectedIndex = selectedNoteIndex; //выделяем обновленную заметку
-                    UpdateNote();//выполняем обновление списка
+                    NotesListBox.SelectedItem = addForm.NewNote;
+                    UpdateNote();//выполняем обновление заметки
+                    UpdateListBox();
                     SaveList();
                 }
             }
@@ -234,35 +269,14 @@ namespace NoteAppUI
         /// </summary>
         private void DeleteNote()
         {
-            if (NotesListBox.Items.Count == 1)
+            if (NotesListBox.SelectedItem != null)
             {
-                _project.ListNote.RemoveAt(NotesListBox.SelectedIndex);
-                NotesListBox.Items.RemoveAt(NotesListBox.SelectedIndex);
-                InitializeNoteView();
-            }
-            else
-            {
-                if ((NotesListBox.Items.Count > 0) && (NotesListBox.SelectedIndex >= 0))
+                if (MessageBox.Show($"Do you really want to delete this note?", "Query",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    var selectedNoteIndex = NotesListBox.SelectedIndex;
-                    _project.ListNote.RemoveAt(selectedNoteIndex);
-                    NotesListBox.Items.RemoveAt(selectedNoteIndex);
-                    if (NotesListBox.Items.Count > selectedNoteIndex)
-                    {
-                        NotesListBox.SelectedIndex = selectedNoteIndex;
-                    }
-                    else
-                    {
-                        NotesListBox.SelectedIndex = selectedNoteIndex - 1;
-                    }
-
+                    _project.ListNote.Remove((Note)NotesListBox.SelectedItem);
+                    UpdateListBox();
                     UpdateNote();
-                    SaveList();
-                }
-                else
-                {
-                    MessageBox.Show("There's no note selected", "Nothing to delete", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -281,7 +295,7 @@ namespace NoteAppUI
             if (addForm.NewNote != null)
             {
                 _project.ListNote.Add(addForm.NewNote);
-                NotesListBox.Items.Add(addForm.NewNote.NoteName);
+                UpdateListBox();
                 SaveList();
             }
         }
@@ -291,12 +305,13 @@ namespace NoteAppUI
         /// </summary>
         private void UpdateNote()
         {
+            var note = (Note) NotesListBox.SelectedItem;
             NoteNameLabel.ForeColor = Color.Black;
-            NoteCategoryLabel.Text = "Category: " + _project.ListNote[NotesListBox.SelectedIndex].NoteCategory;
-            NoteTextTextBox.Text = _project.ListNote[NotesListBox.SelectedIndex].NoteText;
-            NoteNameLabel.Text = _project.ListNote[NotesListBox.SelectedIndex].NoteName;
-            CreatedDate.Value = _project.ListNote[NotesListBox.SelectedIndex].CreationDate;
-            ModifiedDate.Value = _project.ListNote[NotesListBox.SelectedIndex].ChangeDate;
+            NoteCategoryLabel.Text = "Category: " + note.NoteCategory;
+            NoteTextTextBox.Text = note.NoteText;
+            NoteNameLabel.Text = note.NoteName;
+            CreatedDate.Value = note.CreationDate;
+            ModifiedDate.Value = note.ChangeDate;
             CreatedDate.Enabled = false;
             CreatedDate.Enabled = false;
         }
@@ -306,28 +321,15 @@ namespace NoteAppUI
         /// </summary>
         private void SaveList()
         {
-            try
-            {
-                ProjectManager.Save(_project, _notesName);
-            }
-            catch (ArgumentException)
-            {
-                MessageBox.Show("No notes to save", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Инициализация отображения заметки стандартными значениями
-        /// </summary>
-        private void InitializeNoteView()
-        {
-            CreatedDate.Value = DateTime.Now;
-            ModifiedDate.Value = DateTime.Now;
-            NoteNameLabel.ForeColor = Color.Gray;
-            NoteNameLabel.Text = "<<Name of the Note>>";
-            NoteTextTextBox.Text = string.Empty;
+            ProjectManager.Save(_project, _notesName);
         }
 
         #endregion
+
+        private void CategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateListBox();
+            
+        }
     }
 }

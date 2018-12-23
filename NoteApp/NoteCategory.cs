@@ -10,7 +10,7 @@ namespace NoteApp
     /// </summary>
     public enum NoteCategory
     {
-        Work, 
+        Work = 1, 
         Home, 
         Health,
         Sport,

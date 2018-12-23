@@ -35,7 +35,6 @@ namespace NoteApp.UnitTests
                 {"NotEmpty", projectNotEmpty},
                 {"Empty", new Project() }
             };
-            
         }
 
 
