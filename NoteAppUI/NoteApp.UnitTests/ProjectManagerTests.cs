@@ -42,7 +42,11 @@ namespace NoteApp.UnitTests
         [TestCase("NotEmpty", TestName = "Тест сериализации")]
         public void ProjectManagerSaveTest(string projectKey)
         {
-            ProjectManager.Save(TestData[projectKey], _pathToAssembly + "\\NotEmpty.notes");
+            ProjectManager.Save(TestData[projectKey], _pathToAssembly + "\\NotEmpty" +
+                                                      ".note" +
+                                                      "" +
+                                                      "" +
+                                                      "s");
             Assert.True(File.Exists(_pathToAssembly + "\\NotEmpty.notes"));
             using (StreamReader expectedFile = File.OpenText(_pathToAssembly + "\\TestData\\TestCompareToSaved.notes"))
             {
