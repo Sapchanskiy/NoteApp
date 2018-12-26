@@ -67,7 +67,7 @@
             // DeleteNoteButton
             // 
             this.DeleteNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DeleteNoteButton.Image = global::NoteAppUI.Properties.Resources.delete;
+            this.DeleteNoteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteNoteButton.Image")));
             this.DeleteNoteButton.Location = new System.Drawing.Point(101, 408);
             this.DeleteNoteButton.Name = "DeleteNoteButton";
             this.DeleteNoteButton.Size = new System.Drawing.Size(40, 40);
@@ -272,7 +272,7 @@
             // EditNoteButton
             // 
             this.EditNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EditNoteButton.Image = global::NoteAppUI.Properties.Resources.edit;
+            this.EditNoteButton.Image = ((System.Drawing.Image)(resources.GetObject("EditNoteButton.Image")));
             this.EditNoteButton.Location = new System.Drawing.Point(55, 408);
             this.EditNoteButton.Name = "EditNoteButton";
             this.EditNoteButton.Size = new System.Drawing.Size(40, 40);
@@ -283,7 +283,7 @@
             // NewNoteButton
             // 
             this.NewNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.NewNoteButton.Image = global::NoteAppUI.Properties.Resources.add;
+            this.NewNoteButton.Image = ((System.Drawing.Image)(resources.GetObject("NewNoteButton.Image")));
             this.NewNoteButton.Location = new System.Drawing.Point(9, 408);
             this.NewNoteButton.Name = "NewNoteButton";
             this.NewNoteButton.Size = new System.Drawing.Size(40, 40);
