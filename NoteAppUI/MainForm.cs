@@ -113,54 +113,6 @@ namespace NoteAppUI
             DeleteNote();
         }
 
-        
-
-        /// <summary>
-        /// Закрытие программы через ToolStrip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ExitToolStripButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        
-        
-        /// <summary>
-        /// Добавление заметки через ToolStrip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddNoteToolStripButton_Click(object sender, EventArgs e)
-        {
-            AddNote();
-        }
-
-        /// <summary>
-        /// Редактирование заметки через ToolStrip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EditNoteToolStripButton_Click(object sender, EventArgs e)
-        {
-            EditNote();
-        }
-
-        
-
-        /// <summary>
-        /// Окно About через ToolStrip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AboutToolStripButton_Click(object sender, EventArgs e)
-        {
-            var aboutForm = new AboutForm();
-
-            aboutForm.ShowDialog(this);
-        }
-
         /// <summary>
         /// Закрытие программы
         /// </summary>
@@ -200,13 +152,53 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Удаление заметки через ToolStrip
+        /// Окно About через MenuItem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeleteNoteToolStripButton_Click(object sender, EventArgs e)
+        /// <summary>
+        private void AboutMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
+        }
+
+        /// Добавление заметки через MenuItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddNoteMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNote();
+        }
+
+        /// <summary>
+        /// Редактирование заметки через MenuItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditNoteMenuItem_Click(object sender, EventArgs e)
+        {
+            EditNote();
+        }
+
+        /// <summary>
+        /// Удаление заметки через MenuItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteNoteMenuItem_Click(object sender, EventArgs e)
         {
             DeleteNote();
+        }
+        /// <summary>
+        /// Закрытие программы через MenuItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         #endregion
@@ -237,9 +229,14 @@ namespace NoteAppUI
         {
             try
             {
-                var selectedNoteIndex = NotesListBox.SelectedIndex;
+                if (NotesListBox.SelectedItem == null)
+                {
+                    MessageBox.Show("There's no note selected", "Nothing to edit", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 AddOrEditNoteForm addForm = new AddOrEditNoteForm();
-                addForm.SetNote(_project.ListNote[selectedNoteIndex]);
+                addForm.SetNote((Note)NotesListBox.SelectedItem);
                 // При нажатии "редактировать" вызываем форму изменения или добавления заметки. Если форма не пустая, то перезаписываем текущую заметку.
                 addForm.ShowDialog(this);
                 if (addForm.DialogResult != DialogResult.OK)
@@ -248,8 +245,6 @@ namespace NoteAppUI
                 }
                 if (addForm.NewNote != null)
                 {
-                    _project.ListNote.RemoveAt(selectedNoteIndex);//удаляем из списка элемент с указанным индексом в project
-                    _project.ListNote.Insert(selectedNoteIndex, addForm.NewNote);//вставляем в список новую заметку по указанному индексу в project
                     NotesListBox.SelectedItem = addForm.NewNote;
                     UpdateNote();//выполняем обновление заметки
                     UpdateListBox();
@@ -331,5 +326,6 @@ namespace NoteAppUI
             UpdateListBox();
             
         }
+
     }
 }

@@ -217,7 +217,7 @@
             this.MaximumSize = new System.Drawing.Size(4096, 1716);
             this.MinimumSize = new System.Drawing.Size(354, 351);
             this.Name = "AddOrEditNoteForm";
-            this.Text = "Redact Note";
+            this.Text = "Edit Note";
             this.GeneralTableLayout.ResumeLayout(false);
             this.ButtonsTableLayout.ResumeLayout(false);
             this.ResumeLayout(false);

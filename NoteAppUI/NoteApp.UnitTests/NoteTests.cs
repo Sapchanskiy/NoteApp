@@ -20,8 +20,7 @@ namespace NoteApp.UnitTests
             {
                 NoteCategory = categoryToSet
             };
-            Assert.AreEqual(expectedCategory, note
-            Category);
+            Assert.AreEqual(expectedCategory, note.NoteCategory);
         }
 
         [Test]
