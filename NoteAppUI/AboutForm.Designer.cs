@@ -88,9 +88,9 @@
             this.FooterSignatureLabel.AutoSize = true;
             this.FooterSignatureLabel.Location = new System.Drawing.Point(12, 205);
             this.FooterSignatureLabel.Name = "FooterSignatureLabel";
-            this.FooterSignatureLabel.Size = new System.Drawing.Size(125, 13);
+            this.FooterSignatureLabel.Size = new System.Drawing.Size(152, 13);
             this.FooterSignatureLabel.TabIndex = 5;
-            this.FooterSignatureLabel.Text = "2018 Sergei Saprunov ©";
+            this.FooterSignatureLabel.Text = "2018-2019 Sergei Saprunov ©";
             // 
             // AboutForm
             // 

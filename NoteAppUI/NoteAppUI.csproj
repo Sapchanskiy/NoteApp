@@ -132,8 +132,6 @@ md $(SolutionDir)InstallScripts\Release
 md $(SolutionDir)InstallScripts\Installers 
 xcopy $(SolutionDir)\bin\Release\*.dll $(SolutionDir)InstallScripts\Release\ 
 xcopy $(SolutionDir)\bin\Release\*.exe $(SolutionDir)InstallScripts\Release\ 
-xcopy $(SolutionDir)\bin\Release\*.pdb $(SolutionDir)InstallScripts\Release\ 
-xcopy $(SolutionDir)\bin\Release\*.config $(SolutionDir)InstallScripts\Release\ 
 "C:\Program Files (x86)\Inno Setup 5\ISCC.exe" $(SolutionDir)InstallScripts\installer.iss 
 xcopy $(SolutionDir)\installScripts\Output\setup.exe $(SolutionDir)InstallScripts\Installers 
 rd /s /q $(SolutionDir)InstallScripts\Output 
