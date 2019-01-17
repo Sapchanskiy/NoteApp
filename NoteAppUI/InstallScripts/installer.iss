@@ -2,11 +2,11 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-#define MyAppName "NoteApp"
+#define MyAppName "NoteAppUI"
 #define MyAppVersion "1.0"
 #define MyAppPublisher "Sapchanskiy"
 #define MyAppURL "https://github.com/Sapchanskiy/NoteAppUII"
-#define MyAppExeName "NoteApp.exe"
+#define MyAppExeName "NoteAppUI.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.

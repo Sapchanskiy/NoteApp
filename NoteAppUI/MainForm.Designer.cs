@@ -52,6 +52,7 @@
             this.DeleteNoteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DebugModeLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             // 
             this.DeleteNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DeleteNoteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteNoteButton.Image")));
-            this.DeleteNoteButton.Location = new System.Drawing.Point(101, 408);
+            this.DeleteNoteButton.Location = new System.Drawing.Point(101, 399);
             this.DeleteNoteButton.Name = "DeleteNoteButton";
             this.DeleteNoteButton.Size = new System.Drawing.Size(40, 40);
             this.DeleteNoteButton.TabIndex = 12;
@@ -82,7 +83,7 @@
             this.NotesListBox.FormattingEnabled = true;
             this.NotesListBox.Location = new System.Drawing.Point(9, 72);
             this.NotesListBox.Name = "NotesListBox";
-            this.NotesListBox.Size = new System.Drawing.Size(247, 329);
+            this.NotesListBox.Size = new System.Drawing.Size(247, 316);
             this.NotesListBox.TabIndex = 13;
             this.NotesListBox.Click += new System.EventHandler(this.NotesListBox_Click);
             // 
@@ -182,7 +183,7 @@
             this.NoteTextTextBox.Location = new System.Drawing.Point(262, 118);
             this.NoteTextTextBox.Name = "NoteTextTextBox";
             this.NoteTextTextBox.ReadOnly = true;
-            this.NoteTextTextBox.Size = new System.Drawing.Size(432, 326);
+            this.NoteTextTextBox.Size = new System.Drawing.Size(399, 317);
             this.NoteTextTextBox.TabIndex = 25;
             this.NoteTextTextBox.Text = "";
             // 
@@ -190,7 +191,7 @@
             // 
             this.EditNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditNoteButton.Image = ((System.Drawing.Image)(resources.GetObject("EditNoteButton.Image")));
-            this.EditNoteButton.Location = new System.Drawing.Point(55, 408);
+            this.EditNoteButton.Location = new System.Drawing.Point(55, 399);
             this.EditNoteButton.Name = "EditNoteButton";
             this.EditNoteButton.Size = new System.Drawing.Size(40, 40);
             this.EditNoteButton.TabIndex = 17;
@@ -201,7 +202,7 @@
             // 
             this.NewNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.NewNoteButton.Image = ((System.Drawing.Image)(resources.GetObject("NewNoteButton.Image")));
-            this.NewNoteButton.Location = new System.Drawing.Point(9, 408);
+            this.NewNoteButton.Location = new System.Drawing.Point(9, 399);
             this.NewNoteButton.Name = "NewNoteButton";
             this.NewNoteButton.Size = new System.Drawing.Size(40, 40);
             this.NewNoteButton.TabIndex = 5;
@@ -216,7 +217,7 @@
             this.HelpMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(694, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(661, 24);
             this.menuStrip1.TabIndex = 26;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -231,7 +232,7 @@
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(92, 22);
             this.ExitMenuItem.Text = "Exit";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -248,21 +249,21 @@
             // AddNoteMenuItem
             // 
             this.AddNoteMenuItem.Name = "AddNoteMenuItem";
-            this.AddNoteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AddNoteMenuItem.Size = new System.Drawing.Size(136, 22);
             this.AddNoteMenuItem.Text = "Add Note";
             this.AddNoteMenuItem.Click += new System.EventHandler(this.AddNoteMenuItem_Click);
             // 
             // EditNoteMenuItem
             // 
             this.EditNoteMenuItem.Name = "EditNoteMenuItem";
-            this.EditNoteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.EditNoteMenuItem.Size = new System.Drawing.Size(136, 22);
             this.EditNoteMenuItem.Text = "Edit Note";
             this.EditNoteMenuItem.Click += new System.EventHandler(this.EditNoteMenuItem_Click);
             // 
             // DeleteNoteMenuItem
             // 
             this.DeleteNoteMenuItem.Name = "DeleteNoteMenuItem";
-            this.DeleteNoteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteNoteMenuItem.Size = new System.Drawing.Size(136, 22);
             this.DeleteNoteMenuItem.Text = "Delete Note";
             this.DeleteNoteMenuItem.Click += new System.EventHandler(this.DeleteNoteMenuItem_Click);
             // 
@@ -277,16 +278,28 @@
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutMenuItem.Size = new System.Drawing.Size(107, 22);
             this.AboutMenuItem.Text = "About";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
+            // 
+            // DebugModeLabel
+            // 
+            this.DebugModeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DebugModeLabel.AutoSize = true;
+            this.DebugModeLabel.Location = new System.Drawing.Point(375, 31);
+            this.DebugModeLabel.Name = "DebugModeLabel";
+            this.DebugModeLabel.Size = new System.Drawing.Size(286, 13);
+            this.DebugModeLabel.TabIndex = 27;
+            this.DebugModeLabel.Text = "Debug Mode. Press F to stress. Press D to relieve of stress.";
+            this.DebugModeLabel.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(694, 450);
+            this.ClientSize = new System.Drawing.Size(661, 441);
+            this.Controls.Add(this.DebugModeLabel);
             this.Controls.Add(this.NoteTextTextBox);
             this.Controls.Add(this.ModifiedDate);
             this.Controls.Add(this.ModifiedDateLabel);
@@ -303,13 +316,13 @@
             this.Controls.Add(this.NewNoteButton);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(4096, 1716);
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "NoteApp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -342,6 +355,7 @@
         private System.Windows.Forms.ToolStripMenuItem DeleteNoteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
+        private System.Windows.Forms.Label DebugModeLabel;
     }
 }
 

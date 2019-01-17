@@ -48,10 +48,10 @@ namespace NoteApp
         /// <param name="filepath">Путь к файлу</param>
         public static void Save(Project project, string filepath)
         {
-            if (!project.ListNote.Any())
+            /*if (!project.ListNote.Any())
             {
                 throw new ArgumentException("Список заметок пуст");
-            }
+            }*/
 
             JsonSerializer serializer = new JsonSerializer(); //Открытие потока
 

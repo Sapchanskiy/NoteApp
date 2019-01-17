@@ -48,19 +48,17 @@ namespace NoteAppUI
             CategoryCombo.SelectedIndex = 0;
             if (_project.CurrentNote != null)
             {
-                int index = 0;
-                for (int i = 0; i < _project.ListNote.Count; i++)
-                {
-                    if (_project.ListNote[i].NoteName == _project.CurrentNote.NoteName)
-                    {
-                        index = i;
-                        break;
-                    }
-                }
-
-                NotesListBox.SelectedIndex = index;
+                
+                //использовать стандартное решение
+                NotesListBox.SelectedItem = _project.ListNote
+                    .Find(t => (t.NoteName == _project.CurrentNote.NoteName 
+                    && t.CreationDate == _project.CurrentNote.CreationDate)); 
                 UpdateNote();
             }
+
+#if DEBUG
+            DebugModeLabel.Visible = true;
+#endif
         }
 
         
@@ -128,17 +126,7 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Загрузка формы
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            KeyPreview = true;
-        }
-
-        /// <summary>
-        /// Нажатие F1
+        /// Нажатие кнопок клавиатуры в форме
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -149,7 +137,22 @@ namespace NoteAppUI
                 var aboutForm = new AboutForm();
                 aboutForm.ShowDialog();
             }
+
+            #if DEBUG
+            if (e.KeyCode.ToString() == "F")
+            {
+                StressTest();
+            }
+            if (e.KeyCode.ToString() == "D")
+            {
+                DeleteStress();
+            }
+            #endif
         }
+
+        
+
+
 
         /// <summary>
         /// Окно About через MenuItem
@@ -237,7 +240,8 @@ namespace NoteAppUI
                 }
                 AddOrEditNoteForm addForm = new AddOrEditNoteForm();
                 addForm.SetNote((Note)NotesListBox.SelectedItem);
-                // При нажатии "редактировать" вызываем форму изменения или добавления заметки. Если форма не пустая, то перезаписываем текущую заметку.
+                // При нажатии "редактировать" вызываем форму изменения или добавления заметки. 
+                // Если форма не пустая, то перезаписываем текущую заметку.
                 addForm.ShowDialog(this);
                 if (addForm.DialogResult != DialogResult.OK)
                 {
@@ -275,7 +279,37 @@ namespace NoteAppUI
                 }
             }
         }
-        
+
+#if DEBUG
+        /// <summary>
+        /// Метод нагрузочного тестирования
+        /// </summary>
+        private void StressTest()
+        {
+            var stressTestNote = new Note
+            {
+                NoteName = "Stress Test Note",
+                NoteText = "Stress Test Note Text",
+                NoteCategory = NoteCategory.Other
+            };
+            for (int i = 0; i < 200; i++)
+            {
+                _project.ListNote.Add(stressTestNote);
+            }
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Удаление всех стрессовых заметок
+        /// </summary>
+        private void DeleteStress()
+        {
+            _project.ListNote.RemoveAll(t => t.NoteName == "Stress Test Note");
+            UpdateListBox();
+            SaveList();
+        }
+#endif
+
         /// <summary>
         /// Добавить заметку
         /// </summary>
@@ -301,6 +335,10 @@ namespace NoteAppUI
         private void UpdateNote()
         {
             var note = (Note) NotesListBox.SelectedItem;
+            if (note == null)
+            {
+                return;
+            }
             NoteNameLabel.ForeColor = Color.Black;
             NoteCategoryLabel.Text = "Category: " + note.NoteCategory;
             NoteTextTextBox.Text = note.NoteText;
@@ -309,6 +347,7 @@ namespace NoteAppUI
             ModifiedDate.Value = note.ChangeDate;
             CreatedDate.Enabled = false;
             CreatedDate.Enabled = false;
+            NoteTextTextBox.SelectionStart = 1;
         }
 
         /// <summary>
@@ -324,7 +363,7 @@ namespace NoteAppUI
         private void CategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateListBox();
-            
+            UpdateNote();
         }
 
     }
